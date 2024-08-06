@@ -1,0 +1,58 @@
+version: "3.7"
+services:
+    db:
+        image: mariadb:10.3
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MARIADB_PASSWORD: user
+            MARIADB_USER: user
+            MARIADB_DATABASE: aph-connector-db
+        networks:
+            - aph-connector-network
+    phpmyadmin:
+        image: phpmyadmin
+        ports:
+            - 8002:80
+        environment:
+            - UPLOAD_LIMIT=100M
+            - PMA_ARBITRARY=1
+        networks:
+            - aph-connector-network
+    nginx:
+        build: .docker/nginx
+        ports:
+            - 8010:80
+        environment:
+            - NGINX_PORT=80
+        depends_on:
+            - php
+        volumes:
+            - .:/var/www/html
+            - .docker/nginx/nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - aph-connector-network
+    php:
+        build: .docker/php-fpm
+        depends_on:
+            - db
+        networks:
+            - aph-connector-network
+        ports:
+            - 6001:6001
+        working_dir: /var/www/html
+        volumes:
+            - .:/var/www/html
+            - .docker/project/.env.docker:/var/www/html/.env
+            - .docker/project/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    mailhog:
+        image: mailhog/mailhog:v1.0.0
+        ports:
+            - 8025:8025
+            - 1025:1025
+        networks:
+            - aph-connector-network
+volumes:
+    db_data: { }
+networks:
+    aph-connector-network:
+        driver: bridge
