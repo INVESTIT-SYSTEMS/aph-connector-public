@@ -9,7 +9,7 @@
                 <div class="user-login">
                     <a href="#" class="dropdown-toggle"><i class="icon-icon15"></i></a>
                     <div class="dropdown-menu">
-                        <form id="logout-form" action="{{route('admin.auth.logout')}}" method="POST" >
+                        <form id="logout-form" action="{{route('panel.auth.logout')}}" method="POST" >
                             @csrf
                         <input type="submit" value="Wyloguj"/>
                         </form>

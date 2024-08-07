@@ -369,7 +369,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	left: 0;
 	width: 100%;
 	top: 0;
-	background-color: #fff;
+	background-color: #75C9EB;
 	padding: 10px 15px;
 	z-index: 999;
 	overflow: hidden;
@@ -380,7 +380,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .sidebar-logo {
-	width: 100px;
+	width: 150px;
 	transition: all ease-in-out 0.3s;
 }
 
@@ -401,12 +401,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .header-toggle-btn:after {
 	content: "\e912";
 	font-family: 'icomoon';
+    color: #75C9EB;
 }
 
 .js-toggled .header-toggle-btn:after {
 	content: "\e911";
 	font-size: 16px;
 	font-family: 'icomoon';
+    color: white;
 }
 
 .header-navbar {
@@ -414,7 +416,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	width: 100%;
 	right: -110vw;
 	top: 0;
-	background-color: #fff;
+	background-color: #75C9EB;
 	padding: 80px 20px 30px 20px;
 	min-height: 100vh;
 	transition: all ease 0.3s;
@@ -443,10 +445,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	width: 100%;
 	align-items: center;
 	position: relative;
+    color: white;
 }
 
 .header-navbar li a span{
 	text-wrap: none;
+    color: #75C9EB;
 }
 
 .header-navbar li a i {
@@ -462,8 +466,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .header-navbar li.active a,
 .header-navbar li a:hover {
-	background-color: #FFC700;
-	color: #192E51;
+    background-color: #fff;
+    color: #75C9EB;
 }
 
 .header-navbar li a:after {
@@ -518,7 +522,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 		height: 100vh;
 		top: 0;
 		overflow: auto;
-		background-color: #fff;
+		background-color: #75C9EB;
 		padding: 10px 0px;
 		overflow-x: hidden;
 		transition: .6s;
@@ -538,7 +542,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	}
 
 	.sidebar-logo {
-		width: 50px;
+		width: 75px;
 		margin-bottom: 25px;
 		position: relative;
 		left: -1px;
@@ -590,12 +594,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 	.header-sidebar:hover .header-navbar li.active a,
 	.header-navbar li a:hover {
-		background-color: #FFC700;
-		color: white;
+        background-color: white;
+        color: #75C9EB;
 	}
 	.header-sidebar .active, .header-sidebar .active a i {
-		background-color: #FFC700;
-		color: white;
+		background-color: white;
+		color: #75C9EB;
 	}
 	.header-sidebar  a i {
 		margin-left: 16px;
@@ -609,7 +613,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	.header-sidebar:hover .sidebar-logo {
 		left: 50%;
 		transform: translate(-50%, 0);
-		width: 100px;
+		width: 150px;
 	}
 }
 
@@ -836,7 +840,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	transition: all 0.3s ease-in-out;
 	width: 37px;
 	height: 37px;
-	background: #192E51;
+	background: #75C9EB;
 	color: #FEFEFF;
 	display: flex;
 	align-items: center;
@@ -846,7 +850,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .user-login a:hover {
-	background: #575756;
+	background: #5ac2e8;
 	color: #FEFEFF;
 }
 
@@ -1569,7 +1573,7 @@ input[type=file]
 }
 .detect-left-blue .light-color
 {
-	color: #FFC700;
+	color: #75C9EB;
 }
 
 .detect-left-blue-text{
@@ -1706,7 +1710,7 @@ input[type='checkbox']:hover{
 
 input[type='checkbox']:checked
 {
-	background: #FFC700;
+	background: #75C9EB;
 }
 
 input[type='checkbox'] {

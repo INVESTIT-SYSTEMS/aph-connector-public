@@ -44,6 +44,19 @@
 <script src="{{ asset('js/quill.js') }}"></script>
 <script src="{{ asset('js/chart-script.js') }}"></script>
 <script src="{{ asset('js/leaflet/leaflet.js') }}"></script>
+<script src="{{asset('js/fontawesome.js')}}"></script>
+<script src="{{asset('js/fontawesome.js')}}"></script>
+<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('js/gototop.js')}}"></script>
+<script src="{{asset('js/slick.min.js')}}"> </script>
+<script src="{{asset('js/typed.min.js')}}"></script>
+<script src="{{asset('js/remodal.js')}}"></script>
+<script src="{{asset('js/intlTelInput-jquery.min.js')}}"></script>
+<script src="{{asset('js/script.js')}}"></script>
+<script src="{{asset('js/addremove.js')}}"></script>
+<script src="{{asset('js/jquery-ui.js')}}"></script>
+<script src="{{asset('js/slider-range-script.js')}}"></script>
+<script src="{{asset('js/custom.js')}}"></script>
 
 </body>
 </html>

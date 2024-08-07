@@ -40,16 +40,6 @@
                 <input type="datetime-local" placeholder="Data do" onchange="this.form.submit()" name="{{ $dateToName }}" value="{{ request($dateToName) }}">
             </div>
         @endif
-        @if(isset($selectName))
-            <div class="form-col">
-                <select name="{{$selectName}}" onchange="this.form.submit()">
-                    <option value="default">Status</option>
-                    @foreach(\App\Enum\TaskStatusEnum::toArray() as $value => $status)
-                        <option @selected(request()->get('status') == $value) value="{{$value}}">{{$status}}</option>
-                    @endforeach
-                </select>
-            </div>
-        @endif
         @if(isset($perPageItems))
                 <div class="form-col">
                     <select name="{{$perPageItems}}" onchange="this.form.submit()">
