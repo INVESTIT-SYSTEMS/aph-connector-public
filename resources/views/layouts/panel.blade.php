@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="icon" href="{{ asset('img/admin/favicon.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('img/aph-logo.png') }}" type="image/x-icon">
 
     <!-- Scripts -->
 

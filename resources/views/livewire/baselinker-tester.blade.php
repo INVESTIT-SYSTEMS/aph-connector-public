@@ -1,10 +1,10 @@
-<div>
-    <button wire:click="checkToken()" @if($isLocked || $isTokenVerified) disabled @endif class="btn btn-blue">
-        <p wire:loading.class="d-none"> {{$isTokenVerified ? 'Token zweryfikowany poprawnie' : 'Sprawdź poprawność tokenu'}}
+<div wire:init="loadBaselinkerData">
+    <button wire:click="checkToken" @if($isLocked || $isTokenVerified) disabled @endif class="btn btn-blue">
+        <p wire:loading.class="d-none" wire:target="checkToken"> {{$isTokenVerified ? 'Token zweryfikowany poprawnie' : 'Sprawdź poprawność tokenu'}}
         </p>
         <i wire:loading.class="fa-spin" wire:target="checkToken" class="fa-solid fa-spinner" wire:loading></i>
     </button>
-    @if(!!$baselinkerItems['success'])
+    @if(isset($baselinkerItems['success']) && !!$baselinkerItems['success'])
         <form action="{{route('panel.baselinker.store-baselinker-items')}}" method="POST">
             @csrf
             @method('PUT')
@@ -36,5 +36,9 @@
                 <button type="submit" class="btn btn-blue mt-2">Zapisz ustawienia</button>
             </div>
         </form>
+    @else
+        <div class="form-row form-row--title w-50 mb-3 mt-5 flex flex-wrap justify-content-center">
+            <i class="fa-solid fa-spinner fa-spin" style="font-size: 72px" ></i>
+        </div>
     @endif
 </div>

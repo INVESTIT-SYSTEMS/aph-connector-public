@@ -19,7 +19,6 @@
                 </form>
                 <livewire:baselinker-tester token="{{$token}}"
                                             is-token-verified="{{$isVerified}}"
-                                            :baselinker-items="$baselinkerItems"
                                             :current-warehouse-name="$currentWarehouseName"
                                             :current-inventory-name="$currentInventoryName"
                                             :current-pricing-name="$currentPricingName"
