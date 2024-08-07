@@ -36,7 +36,7 @@
                 <button type="submit" class="btn btn-blue mt-2">Zapisz ustawienia</button>
             </div>
         </form>
-    @else
+    @elseif(!!$isTokenVerified)
         <div class="form-row form-row--title w-50 mb-3 mt-5 flex flex-wrap justify-content-center">
             <i class="fa-solid fa-spinner fa-spin" style="font-size: 72px" ></i>
         </div>
