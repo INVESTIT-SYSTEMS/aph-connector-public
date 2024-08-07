@@ -16,8 +16,10 @@ class BaselinkerController extends Controller
     public function index(): View
     {
         $data = $this->repository->getIntegrationData();
+        $tokenData = $data[BaselinkerIntegrationEnum::Token->value] ?? [];
         return view('panel.baselinker.index', [
-            'token' => $data[BaselinkerIntegrationEnum::Token->value]['value'] ?? ''
+            'token' => $tokenData['value'] ?? '',
+            'isVerified' => $tokenData['identifier']
         ]);
     }
 

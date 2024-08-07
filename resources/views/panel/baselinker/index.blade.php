@@ -17,7 +17,7 @@
                     </div>
 
                 </form>
-                <livewire:baselinker-tester token="{{$token}}"/>
+                <livewire:baselinker-tester token="{{$token}}" is-token-verified="{{$isVerified}}"/>
 
             </div>
         </div>

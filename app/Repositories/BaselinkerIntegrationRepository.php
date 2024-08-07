@@ -24,7 +24,18 @@ class BaselinkerIntegrationRepository implements BaselinkerIntegrationInterface
         ], [
             'integration_name' => IntegrationNameEnum::Baselinker,
             'key' => BaselinkerIntegrationEnum::Token,
-            'value' => $token
+            'value' => $token,
+            'identifier' => null
+        ]);
+    }
+
+    public function markTokenAsVerified(): void
+    {
+        $this->model->updateOrCreate([
+            'integration_name' => IntegrationNameEnum::Baselinker,
+            'key' => BaselinkerIntegrationEnum::Token
+        ], [
+            'identifier' => 1
         ]);
     }
 }
