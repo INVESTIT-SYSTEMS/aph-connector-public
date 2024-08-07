@@ -115,6 +115,9 @@ ol {
 	background: #1E4BA0;
 	color: #FEFEFF;
 }
+.btn-blue:disabled{
+    background: #93959b;
+}
 
 .btn-gray {
 	background: #575756;
@@ -436,9 +439,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .header-navbar li a {
 	padding: 5px 3px 5px 12px;
-	background-color: #fff;
+	background-color: #75C9EB;
 	border-radius: 4px;
-	color: #8181A5;
+	color: white;
 	font-size: 14px;
 	font-weight: 600;
 	display: flex;
@@ -450,7 +453,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .header-navbar li a span{
 	text-wrap: none;
-    color: #75C9EB;
 }
 
 .header-navbar li a i {

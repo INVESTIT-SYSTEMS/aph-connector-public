@@ -15,7 +15,8 @@
     <div><a><img class="sidebar-logo" src="{{ asset('img/aph-logo.png') }}" alt=""></a></div>
     <button class="header-toggle-btn"></button>
     <ul class="header-navbar">
-        <li @if(request()->routeIs('panel.dashboard.*')) class="active" @endif><a href="{{route('panel.dashboard.index')}}"><i class="fa-solid fa-cube" style="color: #75C9EB"></i><span>Dashboard</span></a></li>
+        <li @if(request()->routeIs('panel.dashboard.*')) class="active" @endif><a href="{{route('panel.dashboard.index')}}"><i class="fa-solid fa-cube" @if(request()->routeIs('panel.dashboard.*')) style="color: #75C9EB" @endif></i><span @if(request()->routeIs('panel.dashboard.*')) style="color: #75C9EB" @endif>Dashboard</span></a></li>
+        <li @if(request()->routeIs('panel.baselinker.*')) class="active" @endif><a href="{{route('panel.baselinker.index')}}"><i class="fa-solid fa-cube" @if(request()->routeIs('panel.baselinker.*')) style="color: #75C9EB" @endif></i><span @if(request()->routeIs('panel.baselinker.*')) style="color: #75C9EB" @endif>Baselinker</span></a></li>
     </ul>
     <form id="logout-form" action="{{route('panel.auth.logout')}}" method="POST" class="d-none">
         @csrf

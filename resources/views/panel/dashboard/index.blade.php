@@ -7,10 +7,8 @@
     <section class="body-form-main">
         <div class="container-fluid">
             <div class="body-form-main__wrap">
-                <x-filter-admin-list routeName="panel.dashboard.index" textFilterName="search"/>
                 <div class="table-scroll">
                     <div class="table-structure">
-
                     </div>
                 </div>
             </div>

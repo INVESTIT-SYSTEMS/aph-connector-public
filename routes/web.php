@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BaselinkerController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,5 +29,16 @@ Route::prefix('panel')
             ->group(static function (){
                 Route::get('', 'index')
                     ->name('index');
+            });
+
+        Route::prefix('baselinker')
+            ->name('baselinker.')
+            ->controller(BaselinkerController::class)
+            ->group(static function (){
+                Route::get('', 'index')
+                    ->name('index');
+
+                Route::put('store-token', 'storeToken')
+                    ->name('store-token');
             });
     });
