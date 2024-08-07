@@ -38,4 +38,44 @@ class BaselinkerIntegrationRepository implements BaselinkerIntegrationInterface
             'identifier' => 1
         ]);
     }
+
+    public function storeBaselinkerItems(array $data): void
+    {
+        //update warehouse
+        [$warehouseName, $warehouseId, $warehouseType] = explode('.#.', $data['warehouse']);
+        $this->model->updateOrCreate([
+            'integration_name' => IntegrationNameEnum::Baselinker,
+            'key' => BaselinkerIntegrationEnum::Warehouse
+        ], [
+            'integration_name' => IntegrationNameEnum::Baselinker,
+            'key' => BaselinkerIntegrationEnum::Warehouse,
+            'value' => $warehouseName,
+            'identifier' => $warehouseType.'_'.$warehouseId
+        ]);
+
+        //update inventory
+        [$inventoryName, $inventoryId] = explode('.#.', $data['inventory']);
+        $this->model->updateOrCreate([
+            'integration_name' => IntegrationNameEnum::Baselinker,
+            'key' => BaselinkerIntegrationEnum::Inventory
+        ], [
+            'integration_name' => IntegrationNameEnum::Baselinker,
+            'key' => BaselinkerIntegrationEnum::Inventory,
+            'value' => $inventoryName,
+            'identifier' => $inventoryId
+        ]);
+
+        //update pricing
+        [$pricingName, $pricingId] = explode('.#.', $data['pricing']);
+        $this->model->updateOrCreate([
+            'integration_name' => IntegrationNameEnum::Baselinker,
+            'key' => BaselinkerIntegrationEnum::Pricing
+        ], [
+            'integration_name' => IntegrationNameEnum::Baselinker,
+            'key' => BaselinkerIntegrationEnum::Pricing,
+            'value' => $pricingName,
+            'identifier' => $pricingId
+        ]);
+    }
+
 }

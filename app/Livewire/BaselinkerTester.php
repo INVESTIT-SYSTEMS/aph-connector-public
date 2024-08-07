@@ -17,16 +17,26 @@ class BaselinkerTester extends Component
     protected BaselinkerIntegrationService $service;
     protected BaselinkerIntegrationInterface $repository;
 
+    public array $baselinkerItems;
+
+    public ?string $currentWarehouseName;
+    public ?string $currentInventoryName;
+    public ?string $currentPricingName;
+
     public function boot(BaselinkerIntegrationService $service, BaselinkerIntegrationInterface $repository): void
     {
         $this->service = $service;
         $this->repository = $repository;
     }
 
-    public function mount(string $token, $isTokenVerified): void
+    public function mount(string $token, bool $isTokenVerified, array $baselinkerItems, ?string $currentWarehouseName, ?string $currentInventoryName, ?string $currentPricingName): void
     {
         $this->token = $token;
         $this->isTokenVerified = $isTokenVerified;
+        $this->baselinkerItems = $baselinkerItems;
+        $this->currentWarehouseName = $currentWarehouseName;
+        $this->currentInventoryName = $currentInventoryName;
+        $this->currentPricingName = $currentPricingName;
     }
 
     public function checkToken(): void
@@ -37,6 +47,7 @@ class BaselinkerTester extends Component
             {
                 $this->isTokenVerified = true;
                 $this->repository->markTokenAsVerified();
+                $this->baselinkerItems = $this->service->getBaselinkerDataItems();
             }
         }
     }

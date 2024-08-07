@@ -13,11 +13,17 @@
                     <div class="form-row form-row--title w-50 mb-3">
                         <label for="token">Token API Baselinker</label>
                         <input type="text" class="form-control" placeholder="Token API Baselinker" name="token" id="token" value="{{$token}}"/>
-                        <button type="submit" class="btn btn-blue mt-2">Zapisz</button>
+                        <button type="submit" class="btn btn-blue mt-2">Zapisz token</button>
                     </div>
 
                 </form>
-                <livewire:baselinker-tester token="{{$token}}" is-token-verified="{{$isVerified}}"/>
+                <livewire:baselinker-tester token="{{$token}}"
+                                            is-token-verified="{{$isVerified}}"
+                                            :baselinker-items="$baselinkerItems"
+                                            :current-warehouse-name="$currentWarehouseName"
+                                            :current-inventory-name="$currentInventoryName"
+                                            :current-pricing-name="$currentPricingName"
+                />
 
             </div>
         </div>

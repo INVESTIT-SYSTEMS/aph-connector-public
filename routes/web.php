@@ -40,5 +40,8 @@ Route::prefix('panel')
 
                 Route::put('store-token', 'storeToken')
                     ->name('store-token');
+
+                Route::put('store-baselinker-items', 'storeBaselinkerItems')
+                    ->name('store-baselinker-items');
             });
     });
