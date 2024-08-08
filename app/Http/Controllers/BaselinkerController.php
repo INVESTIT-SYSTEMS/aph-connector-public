@@ -21,7 +21,7 @@ class BaselinkerController extends Controller
 
         return view('panel.baselinker.index', [
             'token' => $tokenData['value'] ?? '',
-            'isVerified' => $tokenData['identifier'],
+            'isVerified' => $tokenData['identifier'] ?? null,
             'currentWarehouseName' => $data['warehouse']['value'] ?? null,
             'currentInventoryName' => $data['inventory']['value'] ?? null,
             'currentPricingName' => $data['pricing']['value'] ?? null
