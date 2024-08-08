@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AphSettingsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BaselinkerController;
 use App\Http\Controllers\DashboardController;
@@ -44,4 +45,13 @@ Route::prefix('panel')
                 Route::put('store-baselinker-items', 'storeBaselinkerItems')
                     ->name('store-baselinker-items');
             });
+
+        Route::prefix('aph-settings')
+            ->name('aph-settings.')
+            ->controller(AphSettingsController::class)
+            ->group(static function (){
+                Route::get('', 'index')
+                    ->name('index');
+            });
+
     });

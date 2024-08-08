@@ -112,3 +112,41 @@ if(searchButton)
         searchForm.submit();
     });
 }
+
+const copyToClipBoardBtn1 = document.getElementById('copy-clipboard-btn-1');
+const copyToClipBoardBtn2 = document.getElementById('copy-clipboard-btn-2');
+
+if(copyToClipBoardBtn1)
+{
+    copyToClipBoardBtn1.addEventListener('click', () => {
+        let copyText = document.getElementById("token");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+
+        var tooltip = document.getElementById("text-tooltip-1");
+        tooltip.innerHTML = "Skopiowano zawartość"
+    });
+
+    copyToClipBoardBtn1.addEventListener('mouseout', () => {
+        var tooltip = document.getElementById("text-tooltip-1");
+        tooltip.innerHTML = "Skopiuj do schowka";
+    });
+}
+if(copyToClipBoardBtn2)
+{
+    copyToClipBoardBtn2.addEventListener('click', () => {
+        let copyText = document.getElementById("domain");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+
+        var tooltip = document.getElementById("text-tooltip-2");
+        tooltip.innerHTML = "Skopiowano zawartość"
+    });
+
+    copyToClipBoardBtn2.addEventListener('mouseout', () => {
+        var tooltip = document.getElementById("text-tooltip-2");
+        tooltip.innerHTML = "Skopiuj do schowka";
+    });
+}

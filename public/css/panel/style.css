@@ -1738,5 +1738,56 @@ input[type='checkbox'] {
     height: 45px;
 }
 
+.tooltip-custom {
+    position: absolute;
+    right: 15%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.tooltip-custom .tooltiptext {
+    font-size: 12px;
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 85%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-custom .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip-custom:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.input-container{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+#copy-clipboard-btn-1:hover{
+    cursor: pointer;
+}
 
 
