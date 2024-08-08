@@ -16,6 +16,11 @@ class AphTokenGenerator extends Component
     {
         $this->repository = $repository;
     }
+
+    public function mount(): void
+    {
+        $this->token = $this->repository->getData()->token ?? '';
+    }
     public function generateToken(): void
     {
         $this->repository->storeToken(Str::uuid());
