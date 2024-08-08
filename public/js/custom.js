@@ -104,6 +104,27 @@ if(imageInput2 !== null)
         }
     });
 
+function unsecuredCopyToClipboard(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        document.execCommand('copy');
+    } catch (err) {
+    }
+    document.body.removeChild(textArea);
+}
+
+const copyToClipboard = (content) => {
+    if (window.isSecureContext && navigator.clipboard) {
+        navigator.clipboard.writeText(content);
+    } else {
+        unsecuredCopyToClipboard(content);
+    }
+};
+
 const searchButton = document.getElementById('search-button-comp');
 const searchForm = document.getElementById('search-form-comp');
 if(searchButton)
@@ -122,7 +143,7 @@ if(copyToClipBoardBtn1)
         let copyText = document.getElementById("token");
         copyText.select();
         copyText.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(copyText.value);
+        copyToClipboard(copyText.value);
 
         var tooltip = document.getElementById("text-tooltip-1");
         tooltip.innerHTML = "Skopiowano zawartość"
@@ -139,7 +160,8 @@ if(copyToClipBoardBtn2)
         let copyText = document.getElementById("domain");
         copyText.select();
         copyText.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(copyText.value);
+        //navigator.clipboard.writeText(copyText.value);
+        copyToClipboard(copyText.value);
 
         var tooltip = document.getElementById("text-tooltip-2");
         tooltip.innerHTML = "Skopiowano zawartość"
