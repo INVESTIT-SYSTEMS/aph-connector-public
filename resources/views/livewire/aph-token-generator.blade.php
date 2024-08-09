@@ -45,4 +45,12 @@
             <i wire:loading.class="fa-spin" wire:target="storeAphToken" class="fa-solid fa-spinner" wire:loading></i>
         </button>
     </div>
+    @if(!!$isVerified)
+        <div class="form-row form-row--title w-50 mb-3">
+            <button type="submit" wire:click="testAphConnection()" class="btn btn-blue mt-2">
+                <p wire:loading.class="d-none" wire:target="testAphConnection">Przetestuj połącznie z APH-Serwis</p>
+                <i wire:loading.class="fa-spin" wire:target="testAphConnection" class="fa-solid fa-spinner" wire:loading></i>
+            </button>
+        </div>
+    @endif
 </div>

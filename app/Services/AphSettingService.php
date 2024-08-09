@@ -20,24 +20,24 @@ class AphSettingService
         $this->tokenHeaderName = config('aphserwis.token_header_name');
     }
 
-    public function validatedAphVendor(): bool
+    public function validatedAphVendor(): array
     {
         try {
             $dbData = $this->repository->getData();
-            $result = Http::get($this->baseAphUrl, [
-
-            ])->collect();
-            return !!$result['success'];
+            $result = Http::withHeaders([
+                $this->tokenHeaderName => $dbData->aphApiToken
+            ])
+                ->get($this->baseAphUrl.'/test-aph');
+            return ['status' => $result->status() == 200, 'message' => $result->collect()['success']];
         } catch (Exception)
         {
-            return false;
+            return ['status' => false, 'message' => 'Niepoprawne dane!'];
         }
     }
 
     public function validatedIncomingAphRequest(Request $request): bool
     {
         if(!$request->hasHeader($this->tokenHeaderName)) return false;
-        //if(!$request->getHost() != $this->baseAphUrl) dd('server'); return false;
         $incomingToken = $request->header($this->tokenHeaderName);
         $aphData = $this->repository->getData();
         if($incomingToken != $aphData->token) return false;
