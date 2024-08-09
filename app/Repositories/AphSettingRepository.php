@@ -31,13 +31,20 @@ class AphSettingRepository implements AphSettingInterface
     public function getData(): AphSettingDTO
     {
         $data = $this->getById(1);
-        return new AphSettingDTO($data->api_token);
+        return new AphSettingDTO($data->api_token, $data->aph_api_token);
     }
 
     public function storeToken(string $token): void
     {
         $this->getById(1)->update([
             'api_token' => $token
+        ]);
+    }
+
+    public function storeAphToken(string $token): void
+    {
+        $this->getById(1)->update([
+            'aph_api_token' => $token
         ]);
     }
 }

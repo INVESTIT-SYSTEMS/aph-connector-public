@@ -22,9 +22,27 @@
         </div>
     </div>
     <div class="form-row form-row--title w-50 mb-3">
+        <div class="input-container">
+            <label for="aph_token">Token API APH-Serwis</label>
+            <div class="input-container">
+                <input type="text" class="form-control" id="aph_token" placeholder="Token API APH-Serwis" value="{{$aphToken}}"/>
+                <div class="tooltip-custom">
+                    <i class="fa-solid fa-clipboard" id="copy-clipboard-btn-3"></i>
+                    <span class="tooltiptext" id="text-tooltip-3">Skopiuj do schowka</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row form-row--title w-50 mb-3">
         <button type="submit" wire:click="generateToken()" class="btn btn-blue mt-2">
             <p wire:loading.class="d-none" wire:target="generateToken">Wygeneruj nowy token</p>
             <i wire:loading.class="fa-spin" wire:target="generateToken" class="fa-solid fa-spinner" wire:loading></i>
+        </button>
+    </div>
+    <div class="form-row form-row--title w-50 mb-3">
+        <button type="submit" wire:click="storeAphToken(document.getElementById('aph_token').value)" class="btn btn-blue mt-2">
+            <p wire:loading.class="d-none" wire:target="storeAphToken">Zapisz token API APH-Serwis</p>
+            <i wire:loading.class="fa-spin" wire:target="storeAphToken" class="fa-solid fa-spinner" wire:loading></i>
         </button>
     </div>
 </div>

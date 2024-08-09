@@ -136,6 +136,7 @@ if(searchButton)
 
 const copyToClipBoardBtn1 = document.getElementById('copy-clipboard-btn-1');
 const copyToClipBoardBtn2 = document.getElementById('copy-clipboard-btn-2');
+const copyToClipBoardBtn3 = document.getElementById('copy-clipboard-btn-3');
 
 if(copyToClipBoardBtn1)
 {
@@ -169,6 +170,24 @@ if(copyToClipBoardBtn2)
 
     copyToClipBoardBtn2.addEventListener('mouseout', () => {
         var tooltip = document.getElementById("text-tooltip-2");
+        tooltip.innerHTML = "Skopiuj do schowka";
+    });
+}
+if(copyToClipBoardBtn3)
+{
+    copyToClipBoardBtn3.addEventListener('click', () => {
+        let copyText = document.getElementById("aph_token");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        //navigator.clipboard.writeText(copyText.value);
+        copyToClipboard(copyText.value);
+
+        var tooltip = document.getElementById("text-tooltip-3");
+        tooltip.innerHTML = "Skopiowano zawartość"
+    });
+
+    copyToClipBoardBtn2.addEventListener('mouseout', () => {
+        var tooltip = document.getElementById("text-tooltip-3");
         tooltip.innerHTML = "Skopiuj do schowka";
     });
 }

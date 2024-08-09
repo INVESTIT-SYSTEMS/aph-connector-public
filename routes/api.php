@@ -1,19 +1,18 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\AphSettingsAPIController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+Route::prefix('v1')
+    ->name('v1.')
+    ->group(static function (){
+        Route::prefix('default')
+            ->name('default.')
+            ->middleware('aph.token.verify')
+            ->controller(AphSettingsAPIController::class)
+            ->group(static function (){
+                Route::get('test-incoming-aph', 'testIncomingRequest')
+                    ->name('test-incoming-aph');
+            });
+    });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});

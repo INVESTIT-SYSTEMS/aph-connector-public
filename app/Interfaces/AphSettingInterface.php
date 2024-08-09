@@ -11,4 +11,6 @@ interface AphSettingInterface extends BaseRepositoryInterface
 
     public function storeToken(string $token): void;
 
+    public function storeAphToken(string $token): void;
+
 }

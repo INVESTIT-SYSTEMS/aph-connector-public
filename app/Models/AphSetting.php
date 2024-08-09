@@ -8,6 +8,7 @@ class AphSetting extends Model
 {
     protected $fillable = [
         'api_token',
-        'domain'
+        'domain',
+        'aph_api_token'
     ];
 }
