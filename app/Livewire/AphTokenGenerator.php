@@ -35,7 +35,7 @@ class AphTokenGenerator extends Component
         {
             $this->isVerified = true;
         }
-        $this->checkAphResult = ['status' => false, 'message' => ''];
+        $this->checkAphResult = ['status' => false, 'message' => 'Przetestuj połącznie z APH-Serwis'];
     }
     public function generateToken(): void
     {
