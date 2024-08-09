@@ -6,14 +6,16 @@ use App\Enums\Integrations\BaselinkerIntegrationEnum;
 use App\Http\Requests\StoreBaselinkerItemsRequest;
 use App\Http\Requests\StoreBaselinkerTokenRequest;
 use App\Interfaces\BaselinkerIntegrationInterface;
-use App\Services\BaselinkerIntegrationService;
+use App\Services\Proxies\BaselinkerIntegrationProxyService;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class BaselinkerController extends Controller
 {
 
-    public function __construct(private readonly BaselinkerIntegrationInterface $repository, private readonly BaselinkerIntegrationService $service){}
+    public function __construct(private readonly BaselinkerIntegrationInterface $repository, private readonly BaselinkerIntegrationProxyService $proxyService){}
     public function index(): View
     {
         $data = $this->repository->getIntegrationData();
@@ -38,5 +40,11 @@ class BaselinkerController extends Controller
     {
         $this->repository->storeBaselinkerItems($request->validated());
         return back();
+    }
+
+    public function handleRequest(Request $request, $method): JsonResponse
+    {
+        $response = $this->proxyService->$method($request->all());
+        return response()->json($response);
     }
 }

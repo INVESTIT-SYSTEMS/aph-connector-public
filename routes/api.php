@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AphSettingsAPIController;
+use App\Http\Controllers\BaselinkerController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')
@@ -13,6 +14,18 @@ Route::prefix('v1')
             ->group(static function (){
                 Route::get('test-incoming-aph', 'testIncomingRequest')
                     ->name('test-incoming-aph');
+            });
+
+        Route::prefix('integration')
+            ->name('integration.')
+            ->middleware('aph.token.verify')
+            ->group(static function (){
+                Route::prefix('baselinker')
+                    ->name('baselinker.')
+                    ->controller(BaselinkerController::class)
+                    ->group(static function (){
+                        Route::post('{method}', 'handleRequest');
+                    });
             });
     });
 
