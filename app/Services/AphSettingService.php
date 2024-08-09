@@ -36,11 +36,11 @@ class AphSettingService
 
     public function validatedIncomingAphRequest(Request $request): bool
     {
-        if(!$request->hasHeader($this->tokenHeaderName)) return false;
-        if(!$request->getHost() != $this->baseAphUrl) return false;
+        if(!$request->hasHeader($this->tokenHeaderName)) dd('no header'); return false;
+        if(!$request->getHost() != $this->baseAphUrl) dd('server'); return false;
         $incomingToken = $request->header($this->tokenHeaderName);
         $aphData = $this->repository->getData();
-        if($incomingToken != $aphData->token) return false;
+        if($incomingToken != $aphData->token) dd('bad token'); return false;
 
         return true;
     }
