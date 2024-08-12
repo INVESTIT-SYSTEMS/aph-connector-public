@@ -20,7 +20,6 @@ class BaselinkerIntegrationProxyService
         foreach ($this->availableInterfaces as $interface)
         {
             try {
-                dd($client, $method, $interface);
                 return $client->$interface()->$method();
             } catch (\Exception){}
         }
@@ -33,8 +32,7 @@ class BaselinkerIntegrationProxyService
         try {
             $data = $this->repository->getIntegrationData();
             return new Baselinker(['token' => $data[BaselinkerIntegrationEnum::Token->value]['value']] ?? []);
-        } catch (\Exception $err){
-            dd($err->getMessage(), $data);
+        } catch (\Exception){
             return null;
         }
     }
