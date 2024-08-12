@@ -10,22 +10,15 @@ use Baselinker\Baselinker;
 class BaselinkerIntegrationProxyService
 {
     public function __construct(readonly BaselinkerIntegrationInterface $repository){}
-    private array $interfaces = [
-        'productCatalog',
-        'orders'
-    ];
-    public function call($interface, $method, $parameters)
+
+    public function __call($method, $parameters)
     {
-        if(in_array($interface, $this->interfaces))
-        {
-            $client = $this->makeClient();
-            try {
-                return $client->$interface()->$method($parameters);
-            } catch (\Exception)
-            {
-                throw new \BadMethodCallException("Method {$method} does not exist.");
-            }
+        $client = $this->makeClient();
+        if (method_exists($client, $method)) {
+            return call_user_func_array([$client, $method], $parameters);
         }
+
+        throw new \BadMethodCallException("Method {$method} does not exist.");
     }
 
     private function makeClient(): ?Baselinker

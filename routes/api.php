@@ -24,7 +24,7 @@ Route::prefix('v1')
                     ->name('baselinker.')
                     ->controller(BaselinkerController::class)
                     ->group(static function (){
-                        Route::post('{interface}/{method}', 'handleRequest');
+                        Route::post('{method}', 'handleRequest');
                     });
             });
     });
