@@ -22,7 +22,7 @@ class BaselinkerIntegrationProxyService
                 $interfaceInstance = $client->$interface();
 
                 if (method_exists($interfaceInstance, $method)) {
-                    return call_user_func_array([$interfaceInstance, $method], $parameters)?->contents();
+                    return json_decode(call_user_func_array([$interfaceInstance, $method], $parameters)?->contents(), true);
                 }
             } catch (\Exception $e) {
                 continue;
