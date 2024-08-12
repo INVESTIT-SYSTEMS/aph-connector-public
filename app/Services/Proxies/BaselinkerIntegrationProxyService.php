@@ -32,7 +32,7 @@ class BaselinkerIntegrationProxyService
     {
         try {
             $data = $this->repository->getIntegrationData();
-            return new Baselinker(['token' => $data[BaselinkerIntegrationEnum::Token->value]?->value] ?? []);
+            return new Baselinker(['token' => $data[BaselinkerIntegrationEnum::Token->value]['value']] ?? []);
         } catch (\Exception $err){
             dd($err->getMessage(), $data);
             return null;
