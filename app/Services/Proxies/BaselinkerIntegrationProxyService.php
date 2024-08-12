@@ -17,16 +17,21 @@ class BaselinkerIntegrationProxyService
     public function __call($method, $parameters)
     {
         $client = $this->makeClient();
-        foreach ($this->availableInterfaces as $interface)
-        {
+        foreach ($this->availableInterfaces as $interface) {
             try {
-                dd($client->$interface()->$method(), $client->$interface());
-                return $client->$interface()->$method();
-            } catch (\Exception){}
+                $interfaceInstance = $client->$interface();
+
+                if (method_exists($interfaceInstance, $method)) {
+                    return call_user_func_array([$interfaceInstance, $method], $parameters);
+                }
+            } catch (\Exception $e) {
+                continue;
+            }
         }
 
-        throw new \BadMethodCallException("Method {$method} does not exist.");
+        throw new \BadMethodCallException("Method {$method} does not exist on any available interfaces.");
     }
+
 
     private function makeClient(): ?Baselinker
     {
