@@ -20,6 +20,7 @@ class BaselinkerIntegrationProxyService
         foreach ($this->availableInterfaces as $interface)
         {
             try {
+                dd($client, $method, $interface);
                 return $client->$interface()->$method();
             } catch (\Exception){}
         }
