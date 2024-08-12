@@ -18,7 +18,7 @@ Route::prefix('v1')
 
         Route::prefix('integration')
             ->name('integration.')
-            ->middleware('aph.token.verify')
+            ->middleware('aph.communication.verify')
             ->group(static function (){
                 Route::prefix('baselinker')
                     ->name('baselinker.')
