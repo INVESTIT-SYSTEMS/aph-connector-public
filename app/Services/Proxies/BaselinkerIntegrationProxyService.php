@@ -14,6 +14,7 @@ class BaselinkerIntegrationProxyService
     public function __call($method, $parameters)
     {
         $client = $this->makeClient();
+        dd($method, $parameters, $client);
         if (method_exists($client, $method)) {
             return call_user_func_array([$client, $method], $parameters);
         }
