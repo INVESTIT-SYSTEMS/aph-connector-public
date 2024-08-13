@@ -12,7 +12,10 @@ class BaselinkerIntegrationProxyService
     public function __construct(readonly BaselinkerIntegrationInterface $repository){}
     private array $availableInterfaces = [
         'productCatalog',
-        'orders'
+        'orders',
+        'courierShipments',
+        'externalStorages',
+
     ];
     public function __call($method, $parameters)
     {
