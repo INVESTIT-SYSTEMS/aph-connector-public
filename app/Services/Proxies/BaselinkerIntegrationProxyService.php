@@ -26,7 +26,7 @@ class BaselinkerIntegrationProxyService
     public function __call($method, $parameters)
     {
         if(isset($parameters[0])) $parameters = $parameters[0];
-        return $this->post($method, $parameters)->getBody()->getContents();
+        return json_decode($this->post($method, $parameters)->getBody()->getContents() ?? [], true);
     }
 
 
