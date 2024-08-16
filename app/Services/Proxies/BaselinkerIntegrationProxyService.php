@@ -49,6 +49,7 @@ class BaselinkerIntegrationProxyService
                     return json_decode($response->contents(), true);
                 }
             } catch (\Exception $e) {
+                dd($e->getMessage());
                 continue;
             }
         }
