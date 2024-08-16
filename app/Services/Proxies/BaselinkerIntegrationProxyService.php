@@ -5,7 +5,11 @@ namespace App\Services\Proxies;
 
 use App\Enums\Integrations\BaselinkerIntegrationEnum;
 use App\Interfaces\BaselinkerIntegrationInterface;
+use Baselinker\Api\Response\Response;
 use Baselinker\Baselinker;
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 
 class BaselinkerIntegrationProxyService
 {
@@ -22,8 +26,11 @@ class BaselinkerIntegrationProxyService
     public function __call($method, $parameters)
     {
         $client = $this->makeClient();
+        return new Response(
+            $this->post($method, $parameters),
+        );
 
-        foreach ($this->availableInterfaces as $interface) {
+       /* foreach ($this->availableInterfaces as $interface) {
             try {
                 $interfaceInstance = $client->$interface();
                 if (method_exists($interfaceInstance, $method)) {
@@ -53,7 +60,7 @@ class BaselinkerIntegrationProxyService
             }
         }
 
-        throw new \BadMethodCallException("Method {$method} does not exist on any available interfaces.");
+        throw new \BadMethodCallException("Method {$method} does not exist on any available interfaces.");*/
     }
 
 
@@ -66,5 +73,27 @@ class BaselinkerIntegrationProxyService
         } catch (\Exception){
             return null;
         }
+    }
+
+    protected function post(string $function, array $parameters = []): ResponseInterface
+    {
+        return $this->client()->post('connector.php', [
+            RequestOptions::HEADERS => [
+                'X-BLToken' => $this->repository->getIntegrationData()[BaselinkerIntegrationEnum::Token->value],
+            ],
+            RequestOptions::FORM_PARAMS => [
+                'method' => $function,
+                'parameters' => json_encode($parameters),
+            ],
+        ]);
+    }
+
+    protected function client(): GuzzleClient
+    {
+        return new GuzzleClient([
+            'base_uri' => 'https://api.baselinker.com/',
+            RequestOptions::CONNECT_TIMEOUT => 10,
+            RequestOptions::TIMEOUT => 30,
+        ]);
     }
 }
