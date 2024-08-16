@@ -79,7 +79,7 @@ class BaselinkerIntegrationProxyService
     {
         return $this->client()->post('connector.php', [
             RequestOptions::HEADERS => [
-                'X-BLToken' => $this->repository->getIntegrationData()[BaselinkerIntegrationEnum::Token->value]->value,
+                'X-BLToken' => $this->repository->getIntegrationData()[BaselinkerIntegrationEnum::Token->value]['value'],
             ],
             RequestOptions::FORM_PARAMS => [
                 'method' => $function,
