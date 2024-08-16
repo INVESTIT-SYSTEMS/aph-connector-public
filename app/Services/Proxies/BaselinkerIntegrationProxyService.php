@@ -20,30 +20,13 @@ class BaselinkerIntegrationProxyService
     public function __call($method, $parameters)
     {
         $client = $this->makeClient();
-
         foreach ($this->availableInterfaces as $interface) {
             try {
                 $interfaceInstance = $client->$interface();
 
                 if (method_exists($interfaceInstance, $method)) {
-                    $parameters = $parameters[0] ?? $parameters;
-
-                    $reflection = new \ReflectionMethod($interfaceInstance, $method);
-                    $args = [];
-
-                    foreach ($reflection->getParameters() as $param) {
-                        $paramName = $param->getName();
-
-                        if (isset($parameters[$paramName])) {
-                            $args[] = $parameters[$paramName];
-                        } elseif ($param->isDefaultValueAvailable()) {
-                            $args[] = $param->getDefaultValue();
-                        } else {
-                            throw new \InvalidArgumentException("Missing parameter: {$paramName}");
-                        }
-                    }
-
-                    return json_decode(call_user_func_array([$interfaceInstance, $method], $args)?->contents(), true);
+                    dd($interfaceInstance, $method, $parameters);
+                    return json_decode(call_user_func([$interfaceInstance, $method], $parameters)?->contents(), true);
                 }
             } catch (\Exception $e) {
                 continue;
@@ -52,7 +35,6 @@ class BaselinkerIntegrationProxyService
 
         throw new \BadMethodCallException("Method {$method} does not exist on any available interfaces.");
     }
-
 
 
     private function makeClient(): ?Baselinker
