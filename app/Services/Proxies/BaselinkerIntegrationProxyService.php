@@ -26,21 +26,12 @@ class BaselinkerIntegrationProxyService
     public function __call($method, $parameters)
     {
         if(isset($parameters[0])) $parameters = $parameters[0];
-        return $this->post($method, $parameters);
+        return $this->post($method, $parameters)->getBody()->getContents();
     }
 
 
     protected function post(string $function, array $parameters = []): ResponseInterface
     {
-        dd($this->client()->post('connector.php', [
-            RequestOptions::HEADERS => [
-                'X-BLToken' => $this->repository->getIntegrationData()[BaselinkerIntegrationEnum::Token->value]['value'],
-            ],
-            RequestOptions::FORM_PARAMS => [
-                'method' => $function,
-                'parameters' => json_encode($parameters),
-            ],
-        ])->getBody()->getContents());
         return $this->client()->post('connector.php', [
             RequestOptions::HEADERS => [
                 'X-BLToken' => $this->repository->getIntegrationData()[BaselinkerIntegrationEnum::Token->value]['value'],
