@@ -27,6 +27,7 @@ class BaselinkerIntegrationProxyService
 
                 if (method_exists($interfaceInstance, $method)) {
                     $params = $parameters[0] ?? $parameters;
+                    error_log("Interface instance: " . get_class($interfaceInstance));
 
                     $reflection = new \ReflectionMethod($interfaceInstance, $method);
                     $args = [];
