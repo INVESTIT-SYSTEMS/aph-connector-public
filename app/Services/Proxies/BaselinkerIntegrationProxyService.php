@@ -77,6 +77,7 @@ class BaselinkerIntegrationProxyService
 
     protected function post(string $function, array $parameters = []): ResponseInterface
     {
+        dd($this->repository->getIntegrationData()[BaselinkerIntegrationEnum::Token->value]);
         return $this->client()->post('connector.php', [
             RequestOptions::HEADERS => [
                 'X-BLToken' => $this->repository->getIntegrationData()[BaselinkerIntegrationEnum::Token->value],
