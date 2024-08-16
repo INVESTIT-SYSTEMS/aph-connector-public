@@ -29,7 +29,7 @@ class AphSettingService
                 $this->tokenAphHeaderName => $dbData->aphApiToken
             ])
                 ->get($this->baseAphUrl.'/test-aph');
-            dd($result->collect());
+            dd($result->collect(), $result);
             return ['status' => $result->status() == 200, 'message' => $result->collect()['success']];
         } catch (Exception $err)
         {
