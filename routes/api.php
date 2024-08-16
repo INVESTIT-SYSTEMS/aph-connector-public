@@ -25,6 +25,7 @@ Route::prefix('v1')
                     ->controller(BaselinkerController::class)
                     ->group(static function (){
                         Route::post('{method}', 'handleRequest');
+                        Route::get('get/settings', 'getBaselinkerUserSettings');
                     });
             });
     });

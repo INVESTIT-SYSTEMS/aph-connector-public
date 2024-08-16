@@ -47,4 +47,9 @@ class BaselinkerController extends Controller
         $response = $this->proxyService->$method($request->all());
         return response()->json($response);
     }
+
+    public function getBaselinkerUserSettings(): JsonResponse
+    {
+        return response()->json(['data' => $this->repository->getIntegrationData()]);
+    }
 }
