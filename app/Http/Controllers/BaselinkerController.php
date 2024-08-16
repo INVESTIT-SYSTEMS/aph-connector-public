@@ -44,7 +44,7 @@ class BaselinkerController extends Controller
 
     public function handleRequest(Request $request, string $method): JsonResponse
     {
-        dd($request->all(), $method);
+        return response()->json($request->all(), $method);
         $response = $this->proxyService->$method($request->all());
         return response()->json($response);
     }
