@@ -26,7 +26,7 @@ class BaselinkerIntegrationProxyService
         foreach ($this->availableInterfaces as $interface) {
             try {
                 $interfaceInstance = $client->$interface();
-                dd($interfaceInstance, method_exists($interfaceInstance, $method), $method, $parameters, $parameters);
+                return [$interfaceInstance, method_exists($interfaceInstance, $method), $method, $parameters];
                 if (method_exists($interfaceInstance, $method)) {
                     $params = $parameters[0] ?? $parameters;
                     error_log("Interface instance: " . get_class($interfaceInstance));
