@@ -25,7 +25,7 @@ class BaselinkerIntegrationProxyService
     ];
     public function __call($method, $parameters)
     {
-        $client = $this->makeClient();
+       // $client = $this->makeClient();
         return new Response(
             $this->post($method, $parameters),
         );
