@@ -15,6 +15,8 @@ class BaselinkerIntegrationProxyService
         'orders',
         'courierShipments',
         'externalStorages',
+        'orderReturns',
+        'baselinkerConnect'
 
     ];
     public function __call($method, $parameters)
@@ -24,7 +26,7 @@ class BaselinkerIntegrationProxyService
         foreach ($this->availableInterfaces as $interface) {
             try {
                 $interfaceInstance = $client->$interface();
-
+                dd($interfaceInstance, method_exists($interfaceInstance, $method), $method, $parameters, $parameters);
                 if (method_exists($interfaceInstance, $method)) {
                     $params = $parameters[0] ?? $parameters;
                     error_log("Interface instance: " . get_class($interfaceInstance));
