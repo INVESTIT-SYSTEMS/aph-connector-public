@@ -50,6 +50,6 @@ class BaselinkerController extends Controller
 
     public function getBaselinkerUserSettings(): JsonResponse
     {
-        return response()->json(['data' => $this->repository->getIntegrationData()]);
+        return response()->json(['data' => $this->repository->baselinkerDataNoToken()]);
     }
 }

@@ -11,4 +11,6 @@ interface BaselinkerIntegrationInterface extends IntegrationInformationInterface
     public function markTokenAsVerified(): void;
 
     public function storeBaselinkerItems(array $data): void;
+
+    public function baselinkerDataNoToken(): ?array;
 }

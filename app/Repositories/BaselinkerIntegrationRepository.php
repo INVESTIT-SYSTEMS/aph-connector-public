@@ -78,4 +78,14 @@ class BaselinkerIntegrationRepository implements BaselinkerIntegrationInterface
         ]);
     }
 
+    public function baselinkerDataNoToken(): ?array
+    {
+        $data = collect($this->getIntegrationData());
+        if(count($data) > 0){
+            return $data->filter(function (array $item){
+                return $item['key'] != 'token';
+            })->toArray();
+        }
+        return [];
+    }
 }
