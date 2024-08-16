@@ -25,6 +25,7 @@ class BaselinkerIntegrationProxyService
     ];
     public function __call($method, $parameters)
     {
+        if(isset($parameters[0])) $parameters = $parameters[0];
         return new Response(
             $this->post($method, $parameters),
         );
