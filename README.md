@@ -76,7 +76,7 @@ php artisan db:seed
 
 ### 9. Generowanie konta administratora
 
-Wygeneruj konto administratora za pomocą poniższego polecenia. Pamiętaj, aby zapisać dane wyświetlone po wykonaniu komendy
+Wygeneruj konto administratora za pomocą poniższego polecenia. Pamiętaj, aby zapisać dane wyświetlone po wykonaniu komendy:
 ```sh
 php artisan create:admin
 ```
