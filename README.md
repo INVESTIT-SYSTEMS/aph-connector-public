@@ -1,4 +1,7 @@
-# Instrukcja Instalacji APH-CONNECTOR
+<p align="center">
+  <img src="https://aph-serwis.pl/storage/aph-logo.png" alt="APH Logo" width="150" />
+</p>
+<h1 align="center">Instrukcja Instalacji APH-CONNECTOR</h1>
 
 ## Wymagania
 
