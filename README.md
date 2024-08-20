@@ -1,66 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Instrukcja Instalacji APH-CONNECTOR
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Wymagania
 
-## About Laravel
+- PHP 8.1 lub wyższy
+- MySQL 5.7 lub wyższy
+- Composer
+- Certyfikat SSL (wymagany HTTPS)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Kroki Instalacji
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 1. Wypakowanie Plików
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Wypakuj zawartość pliku ZIP z aplikacją APH-CONNECTOR do wybranego katalogu na serwerze.
 
-## Learning Laravel
+### 2. Konfiguracja Pliku Środowiskowego
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Znajdź plik `.env` w głównym katalogu aplikacji i edytuj następujące ustawienia:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **APP_URL**: Ustaw domenę serwera (bez slasha na końcu). **Uwaga:** Wymagany jest SSL, dlatego adres musi zaczynać się od `https`. Przykład: `https://moja-domena-connectora.pl`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **APP_DEBUG**: Ustaw na `false` dla środowiska produkcyjnego.
 
-## Laravel Sponsors
+### 3. Konfiguracja Połączenia z Bazą Danych
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Wypełnij poniższe parametry, dostosowując je do swojej konfiguracji bazy danych:
 
-### Premium Partners
+- **DB_CONNECTION**: `mysql`
+- **DB_HOST**: `twoj_host_bazy`
+- **DB_PORT**: `port_twojej_bazy` (domyślnie `3306`)
+- **DB_DATABASE**: `nazwa_twojej_bazy`
+- **DB_USERNAME**: `nazwa_uzytkownika_bazy`
+- **DB_PASSWORD**: `"haslo_uzytkownika_bazy"` (należy umieścić w cudzysłowach)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 4. Instalacja Composera
 
-## Contributing
+Wróć do CLI (command line interface) i w głównym katalogu aplikacji zainstaluj Composer, wykonując poniższe polecenia:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```sh
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+```
+### 5. Instalacja zależności
 
-## Code of Conduct
+Zainstaluj wszystkie niezbędne pakiety, uruchamiając następujące polecenie:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```sh
+php composer.phar install
+```
 
-## Security Vulnerabilities
+### 6. Generowanie klucza aplikacji
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Wygeneruj klucz aplikacji za pomocą poniższego polecenia:
+```sh
+php artisan key:generate
+```
 
-## License
+### 7. Migracja Bazy Danych
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Wykonaj migrację bazy danych, aby utworzyć wszystkie wymagane tabele:
+```sh
+php artisan migrate
+```
+
+### 8. Wypełnienie Bazy Danymi Podstawowymi
+
+Wypełnij bazę danych podstawowymi danymi, wykonując poniższe polecenie:
+```sh
+php artisan db:seed
+```
+
+### 9. Generowanie konta administratora
+
+Wygeneruj konto administratora za pomocą poniższego polecenia. Pamiętaj, aby zapisać dane wyświetlone po wykonaniu komendy
+```sh
+php artisan create:admin
+```
+### 10. Zaloguj się do panelu administratora APH-CONNECTOR
+
+Zaloguj się do panelu przez (https://twoja-domena-connectora.pl) **UWAGA! Zostaniesz przekierowany na stronę logowania.**
+
