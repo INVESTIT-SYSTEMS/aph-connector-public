@@ -19,7 +19,7 @@ Wypakuj zawartość pliku ZIP z aplikacją APH-CONNECTOR do wybranego katalogu n
 ### 2. Konfiguracja Pliku Środowiskowego
 
 Znajdź plik `.env` w głównym katalogu aplikacji i edytuj następujące ustawienia:
-
+ 
 - **APP_URL**: Ustaw domenę serwera (bez slasha na końcu). **Uwaga:** Wymagany jest SSL, dlatego adres musi zaczynać się od `https`. Przykład: `https://moja-domena-connectora.pl`
 
 - **APP_DEBUG**: Ustaw na `false` dla środowiska produkcyjnego.
